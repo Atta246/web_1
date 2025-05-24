@@ -157,7 +157,7 @@ export default function Reservation() {
                     <span className={formStatus.error ? "font-medium" : ""}>{formStatus.message}</span>
                     {formStatus.error && formStatus.message.includes('largest table') && (
                       <div className="mt-2">
-                        <a href="tel:+201092289854" className="text-indigo-600 dark:text-indigo-400 underline hover:text-indigo-800 font-medium">Call us at (555) 123-4567</a> to arrange accommodations for larger groups.
+                        <a href="tel:+201092289854" className="text-indigo-600 dark:text-indigo-400 underline hover:text-indigo-800 font-medium">Call us at +201092289854</a> to arrange accommodations for larger groups.
                       </div>
                     )}
                   </div>

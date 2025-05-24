@@ -320,7 +320,12 @@ export default function Reservation() {
                       name="time"
                       value={formData.time}
                       onChange={handleChange}
-                      className="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 text-gray-800 dark:text-white transition-all appearance-none"
+                      className="w-full pl-12 pr-10 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 text-gray-800 dark:text-white transition-all appearance-none"
+                      style={{
+                        backgroundImage: 'none',
+                        WebkitAppearance: 'none',
+                        MozAppearance: 'none'
+                      }}
                       required
                     >
                       <option value="">Select a time</option>
@@ -349,7 +354,12 @@ export default function Reservation() {
                     name="occasion"
                     value={formData.occasion}
                     onChange={handleChange}
-                    className="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 text-gray-800 dark:text-white transition-all appearance-none"
+                    className="w-full pl-12 pr-10 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 text-gray-800 dark:text-white transition-all appearance-none"
+                    style={{
+                      backgroundImage: 'none',
+                      WebkitAppearance: 'none',
+                      MozAppearance: 'none'
+                    }}
                   >
                     <option value="">Select an occasion</option>
                     <option value="birthday">Birthday</option>

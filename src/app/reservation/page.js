@@ -112,12 +112,12 @@ export default function Reservation() {
       <div className="max-w-7xl mx-auto">
         {/* Hero Banner for Reservation */}
         <div className="relative overflow-hidden rounded-3xl mb-16 shadow-xl">
-          <div className="absolute inset-0 bg-black/30 backdrop-blur-sm z-10"></div>
+          <div className="absolute inset-0 bg-black/30 z-10"></div>
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0')] bg-cover bg-center opacity-60"></div>
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/40 via-purple-500/40 to-pink-500/40 mix-blend-soft-light pointer-events-none"></div>
           
           <div className="relative z-20 py-20 px-6 text-center">
-            <span className="inline-block py-1 px-6 rounded-full text-sm font-medium tracking-wider text-white bg-white/10 backdrop-blur-md shadow-md mb-4 animate-scaleIn">BOOK YOUR TABLE</span>
+            <span className="inline-block py-1 px-6 rounded-full text-sm font-medium tracking-wider text-white bg-white/10 shadow-md mb-4 animate-scaleIn">BOOK YOUR TABLE</span>
             <h1 className="text-4xl md:text-6xl font-black mb-6 text-white animate-fadeIn">
               Make a Reservation
             </h1>
@@ -128,7 +128,7 @@ export default function Reservation() {
         </div>
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
           {/* Reservation Form */}
-          <div className="lg:col-span-3 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-2xl shadow-xl p-8 md:p-10 border border-gray-100/50 dark:border-gray-700/50 hover-lift transition-all duration-500 animate-slideUp">
+          <div className="lg:col-span-3 bg-white/90 dark:bg-gray-800/90 rounded-2xl shadow-xl p-8 md:p-10 border border-gray-100/50 dark:border-gray-700/50 hover-lift transition-all duration-500 animate-slideUp">
             <div className="flex items-center mb-8">
               <div className="p-3 rounded-xl bg-gradient-to-br from-indigo-400 to-purple-600 text-white mr-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -138,7 +138,7 @@ export default function Reservation() {
               <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400">Table Reservation</h2>
             </div>
               {formStatus.submitted && (
-              <div className={`mb-8 p-6 rounded-xl backdrop-blur-sm shadow-md ${
+              <div className={`mb-8 p-6 rounded-xl shadow-md ${
                 formStatus.error 
                   ? 'bg-red-50/90 dark:bg-red-900/20 border border-red-100 dark:border-red-800/30 text-red-700 dark:text-red-400' 
                   : 'bg-green-50/90 dark:bg-green-900/20 border border-green-100 dark:border-green-800/30 text-green-700 dark:text-green-400'
@@ -180,7 +180,7 @@ export default function Reservation() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm text-gray-800 dark:text-white transition-all"
+                      className="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 text-gray-800 dark:text-white transition-all"
                       required
                     />
                   </div>
@@ -200,7 +200,7 @@ export default function Reservation() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm text-gray-800 dark:text-white transition-all"
+                      className="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 text-gray-800 dark:text-white transition-all"
                       required
                     />
                   </div>
@@ -221,7 +221,7 @@ export default function Reservation() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm text-gray-800 dark:text-white transition-all"
+                      className="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 text-gray-800 dark:text-white transition-all"
                       required
                     />
                   </div>
@@ -258,7 +258,7 @@ export default function Reservation() {
                           });
                         }
                       }}
-                      className="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm text-gray-800 dark:text-white transition-all appearance-none"
+                      className="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 text-gray-800 dark:text-white transition-all appearance-none"
                       required
                     >
                       {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
@@ -296,7 +296,7 @@ export default function Reservation() {
                       name="date"
                       value={formData.date}
                       onChange={handleChange}
-                      className="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm text-gray-800 dark:text-white transition-all"
+                      className="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 text-gray-800 dark:text-white transition-all"
                       required
                     />
                   </div>
@@ -315,7 +315,7 @@ export default function Reservation() {
                       name="time"
                       value={formData.time}
                       onChange={handleChange}
-                      className="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm text-gray-800 dark:text-white transition-all appearance-none"
+                      className="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 text-gray-800 dark:text-white transition-all appearance-none"
                       required
                     >
                       <option value="">Select a time</option>
@@ -344,7 +344,7 @@ export default function Reservation() {
                     name="occasion"
                     value={formData.occasion}
                     onChange={handleChange}
-                    className="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm text-gray-800 dark:text-white transition-all appearance-none"
+                    className="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 text-gray-800 dark:text-white transition-all appearance-none"
                   >
                     <option value="">Select an occasion</option>
                     <option value="birthday">Birthday</option>
@@ -375,7 +375,7 @@ export default function Reservation() {
                     value={formData.specialRequests}
                     onChange={handleChange}
                     rows="4"
-                    className="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm text-gray-800 dark:text-white transition-all"
+                    className="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 text-gray-800 dark:text-white transition-all"
                     placeholder="Let us know if you have any special requirements or requests"
                   ></textarea>
                 </div>
@@ -406,7 +406,7 @@ export default function Reservation() {
                 </span>
               </button>
               
-              <div className="mt-6 p-4 rounded-xl bg-indigo-50/50 dark:bg-indigo-900/20 border border-indigo-100/50 dark:border-indigo-800/30 backdrop-blur-sm">
+              <div className="mt-6 p-4 rounded-xl bg-indigo-50/50 dark:bg-indigo-900/20 border border-indigo-100/50 dark:border-indigo-800/30">
                 <p className="text-sm text-gray-600 dark:text-gray-400 flex items-start">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-indigo-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -418,7 +418,7 @@ export default function Reservation() {
           </div>
             {/* Reservation Info */}
           <div className="lg:col-span-2">
-            <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-2xl shadow-xl p-8 md:p-10 mb-10 border border-gray-100/50 dark:border-gray-700/50 hover-lift transition-all duration-500 animate-slideRight">
+            <div className="bg-white/90 dark:bg-gray-800/90 rounded-2xl shadow-xl p-8 md:p-10 mb-10 border border-gray-100/50 dark:border-gray-700/50 hover-lift transition-all duration-500 animate-slideRight">
               <div className="flex items-center mb-8">
                 <div className="p-3 rounded-xl bg-gradient-to-br from-purple-400 to-pink-600 text-white mr-4">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

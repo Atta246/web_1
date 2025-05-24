@@ -7,7 +7,7 @@ export default function Footer() {  return (    <footer className="bg-gradient-t
           <div className="animate-fadeIn hover-lift">
             <h3 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-300">About Us</h3>
             <p className="mt-5 text-base text-gray-600 dark:text-gray-300 leading-relaxed">
-              Delicious Restaurant offers an exceptional dining experience with the freshest ingredients and a warm atmosphere.
+              Havana Restaurant offers an exceptional dining experience with the freshest ingredients and a warm atmosphere.
             </p>
           </div>          <div className="animate-fadeIn animation-delay-100 hover-lift">
             <h3 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-300">Opening Hours</h3>
@@ -54,7 +54,7 @@ export default function Footer() {  return (    <footer className="bg-gradient-t
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </span>
-                info@delicious.com
+                info@Havana.com
               </li>
             </ul>
           </div>
@@ -80,7 +80,7 @@ export default function Footer() {  return (    <footer className="bg-gradient-t
             </a>
           </div>
           <p className="mt-8 text-base font-medium text-gray-500 dark:text-gray-400 md:mt-0 md:order-1 backdrop-blur-md bg-white/10 dark:bg-gray-800/10 px-5 py-3 rounded-full shadow-inner">
-            &copy; 2025 <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500">Delicious Restaurant</span>. All rights reserved.
+            &copy; 2025 <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500">Havana Restaurant</span>. All rights reserved.
           </p>
         </div>
       </div>

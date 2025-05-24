@@ -7,8 +7,8 @@ import { AuthProvider } from '../context/AuthContext';
 import LoginDebugger from './login-debugger';
 
 function LoginPage() {
-  const [username, setUsername] = useState('121401');
-  const [password, setPassword] = useState('Atta');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();

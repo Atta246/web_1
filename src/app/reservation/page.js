@@ -258,7 +258,12 @@ export default function Reservation() {
                           });
                         }
                       }}
-                      className="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 text-gray-800 dark:text-white transition-all appearance-none"
+                      className="w-full pl-12 pr-10 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 text-gray-800 dark:text-white transition-all appearance-none"
+                      style={{
+                        backgroundImage: 'none',
+                        WebkitAppearance: 'none',
+                        MozAppearance: 'none'
+                      }}
                       required
                     >
                       {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (

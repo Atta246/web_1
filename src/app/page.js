@@ -23,7 +23,7 @@ export default function Home() {
         <div className="relative flex flex-col justify-center items-center h-full z-20 px-4 text-center">
           <span className="inline-block py-1 px-6 rounded-full text-sm font-medium tracking-wider text-white bg-white/10 backdrop-blur-md shadow-md mb-6 animate-scaleIn">PREMIER DINING EXPERIENCE</span>
           <h1 className="text-4xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-100 to-gray-300 mb-6 animate-fadeIn">
-            Delicious Restaurant
+            Havana Restaurant
           </h1>
           <p className="text-xl md:text-2xl text-gray-100 mb-10 max-w-2xl mx-auto animate-fadeIn animation-delay-200 font-light">
             Experience the finest dining in town with our award-winning cuisine and elegant atmosphere
@@ -55,7 +55,7 @@ export default function Home() {
             <h2 className="text-3xl md:text-5xl font-black mb-8 text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 dark:from-white dark:via-gray-100 dark:to-gray-300">Our Restaurant Story</h2>
             <div className="space-y-6 text-lg text-gray-700 dark:text-gray-300 font-light leading-relaxed backdrop-blur-sm bg-white/50 dark:bg-gray-800/50 p-6 rounded-2xl shadow-md border border-gray-100/50 dark:border-gray-700/50">
               <p>
-                Founded in 2010, Delicious Restaurant has been serving exceptional cuisine for over a decade. 
+                Founded in 2010, Havana Restaurant has been serving exceptional cuisine for over a decade. 
                 Our passion for food and commitment to quality has made us one of the top dining destinations in the city.
               </p>
               <p>
@@ -222,7 +222,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <p className="text-gray-700 dark:text-gray-300 font-light leading-relaxed">"The food was absolutely delicious! The service was impeccable and the atmosphere was perfect for our anniversary dinner. Will definitely return soon!"</p>
+              <p className="text-gray-700 dark:text-gray-300 font-light leading-relaxed">"The food was absolutely Havana! The service was impeccable and the atmosphere was perfect for our anniversary dinner. Will definitely return soon!"</p>
               <div className="mt-6 text-xs text-gray-500 dark:text-gray-400">Visited on May 10, 2025</div>
             </div>
             
@@ -260,7 +260,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <p className="text-gray-700 dark:text-gray-300 font-light leading-relaxed">"I've dined at many restaurants, but Delicious stands out. The flavors are unique and every dish is consistently amazing! The attention to detail and presentation is unmatched."</p>
+              <p className="text-gray-700 dark:text-gray-300 font-light leading-relaxed">"I've dined at many restaurants, but Havana stands out. The flavors are unique and every dish is consistently amazing! The attention to detail and presentation is unmatched."</p>
               <div className="mt-6 text-xs text-gray-500 dark:text-gray-400">Visited on June 15, 2025</div>
             </div>
             

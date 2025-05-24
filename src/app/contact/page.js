@@ -1,346 +1,398 @@
-'use client';
+import Image from "next/image";
+import Link from "next/link";
 
-import { useState } from 'react';
-import { contactService } from '../services/api';
-
-export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  
-  const [formStatus, setFormStatus] = useState({
-    submitted: false,
-    error: false,
-    message: '',
-    loading: false
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    // Validate form
-    if (!formData.name || !formData.email || !formData.message) {
-      setFormStatus({
-        submitted: true,
-        error: true,
-        message: 'Please fill out all required fields.',
-        loading: false
-      });
-      return;
-    }
-
-    try {
-      setFormStatus({
-        ...formStatus,
-        loading: true
-      });
-      
-      // Submit form data to API
-      await contactService.submitContactForm(formData);
-      
-      setFormStatus({
-        submitted: true,
-        error: false,
-        message: 'Thank you for your message! We will get back to you soon.',
-        loading: false
-      });
-      
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setFormStatus({
-        submitted: true,
-        error: true,
-        message: error.message || 'There was an error submitting your message. Please try again.',
-        loading: false
-      });
-    }
-  };
+export default function Home() {
   return (
-    <div className="py-16 px-4 md:px-8 lg:px-16 bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 min-h-screen">
-      <div className="max-w-7xl mx-auto">
-        {/* Contact Hero Banner */}
-        <div className="relative overflow-hidden rounded-3xl mb-16 shadow-xl">
-          <div className="absolute inset-0 bg-black/30 backdrop-blur-sm z-10"></div>
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4')] bg-cover bg-center opacity-60"></div>
-          <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/40 via-purple-500/40 to-pink-500/40 mix-blend-soft-light pointer-events-none"></div>
-          
-          <div className="relative z-20 py-20 px-6 text-center">
-            <span className="inline-block py-1 px-6 rounded-full text-sm font-medium tracking-wider text-white bg-white/10 backdrop-blur-md shadow-md mb-4 animate-scaleIn">GET IN TOUCH</span>
-            <h1 className="text-4xl md:text-6xl font-black mb-6 text-white animate-fadeIn">
-              Contact Us
-            </h1>
-            <p className="text-xl text-gray-100 max-w-3xl mx-auto font-light animate-fadeIn animation-delay-200">
-              Have questions, feedback, or want to make a reservation? We'd love to hear from you.
-            </p>
+    <div className="w-full">
+      {/* Hero Section */}
+      <div className="relative h-[90vh] bg-gray-900 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40 z-10"></div>
+        <div 
+          className="absolute inset-0 bg-cover bg-center transform scale-105 animate-float"
+          style={{backgroundImage: "url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"}}
+        ></div>
+        
+        {/* Modern decorative elements */}
+        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-gradient-to-br from-indigo-500/20 to-purple-500/20 blur-3xl animate-float"></div>
+        <div className="absolute bottom-20 right-10 w-72 h-72 rounded-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 blur-3xl animate-float animation-delay-500"></div>
+        <div className="absolute top-40 right-20 w-40 h-40 rounded-full bg-gradient-to-br from-pink-500/20 to-yellow-500/20 blur-3xl animate-float animation-delay-300"></div>
+        
+        {/* Light beam effect */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-100/5 via-gray-900/0 to-gray-900/0 pointer-events-none"></div>
+        
+        <div className="relative flex flex-col justify-center items-center h-full z-20 px-4 text-center">
+          <span className="inline-block py-1 px-6 rounded-full text-sm font-medium tracking-wider text-white bg-white/10 shadow-md mb-6 animate-scaleIn">PREMIER DINING EXPERIENCE</span>
+          <h1 className="text-4xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-100 to-gray-300 mb-6 animate-fadeIn">
+            Delicious Restaurant
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-100 mb-10 max-w-2xl mx-auto animate-fadeIn animation-delay-200 font-light">
+            Experience the finest dining in town with our award-winning cuisine and elegant atmosphere
+          </p>
+          <div className="flex flex-col sm:flex-row gap-5 animate-fadeIn animation-delay-300">
+            <Link href="/menu" 
+              className="group relative bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600 text-white font-bold py-4 px-10 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 overflow-hidden"
+            >
+              <span className="relative z-10">View Menu</span>
+              <div className="absolute inset-0 w-0 group-hover:w-full bg-white/10 duration-300 transition-all"></div>
+            </Link>
+            <Link href="/reservation" 
+              className="group relative bg-transparent text-white font-bold py-4 px-10 rounded-full transition-all duration-300 hover:shadow-glow overflow-hidden border border-gray-200/30"
+            >
+              <span className="relative z-10">Make Reservation</span>
+              <div className="absolute inset-0 w-0 group-hover:w-full bg-white/10 duration-300 transition-all"></div>
+            </Link>
           </div>
         </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-          {/* Contact Form */}
-          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-2xl shadow-xl p-8 md:p-10 border border-gray-100/50 dark:border-gray-700/50 hover-lift transition-all duration-500 animate-slideUp">
-            <div className="flex items-center mb-8">
-              <div className="p-3 rounded-xl bg-gradient-to-br from-indigo-400 to-purple-600 text-white mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+      </div>
+
+      {/* About Section */}
+      <div className="py-24 px-4 md:px-8 lg:px-16 bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-indigo-500/5 via-purple-500/5 to-pink-500/5 dark:from-indigo-500/5 dark:via-purple-500/5 dark:to-pink-500/10 pointer-events-none"></div>
+        
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative">
+          <div className="animate-slideLeft">
+            <span className="inline-block py-1 px-6 rounded-full text-sm font-medium tracking-wider text-indigo-600 dark:text-indigo-400 bg-indigo-100/60 dark:bg-indigo-900/30 shadow-sm mb-4">OUR HISTORY</span>
+            <h2 className="text-3xl md:text-5xl font-black mb-8 text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 dark:from-white dark:via-gray-100 dark:to-gray-300">Our Restaurant Story</h2>
+            <div className="space-y-6 text-lg text-gray-700 dark:text-gray-300 font-light leading-relaxed bg-white/50 dark:bg-gray-800/50 p-6 rounded-2xl shadow-md border border-gray-100/50 dark:border-gray-700/50">
+              <p>
+                Founded in 2010, Delicious Restaurant has been serving exceptional cuisine for over a decade. 
+                Our passion for food and commitment to quality has made us one of the top dining destinations in the city.
+              </p>
+              <p>
+                We source only the freshest ingredients from local farmers and suppliers to create memorable dishes 
+                that combine traditional flavors with modern culinary techniques.
+              </p>
+              <Link href="/contact" className="inline-flex items-center group bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600 text-white font-medium py-3 px-8 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 shadow-md hover:shadow-xl">
+                <span>Learn More</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
+              </Link>
+            </div>
+          </div>
+          <div className="relative h-80 md:h-96 rounded-lg overflow-hidden">
+            <div 
+              className="absolute inset-0 bg-cover bg-center"
+              style={{backgroundImage: "url('https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80')"}}
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      {/* Featured Menu Section */}
+      <div className="py-24 px-4 md:px-8 lg:px-16 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-indigo-500/5 via-purple-500/5 to-pink-500/5 dark:from-indigo-500/10 dark:via-purple-500/10 dark:to-pink-500/10 pointer-events-none"></div>
+        
+        <div className="max-w-7xl mx-auto relative">
+          <div className="text-center mb-16">
+            <span className="inline-block py-1 px-6 rounded-full text-sm font-medium tracking-wider text-indigo-600 dark:text-indigo-400 bg-indigo-100/60 dark:bg-indigo-900/30 shadow-sm mb-4">CULINARY EXCELLENCE</span>
+            <h2 className="text-3xl md:text-5xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 dark:from-white dark:via-gray-100 dark:to-gray-300">Featured Menu</h2>
+            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto font-light">
+              Our signature dishes crafted with love and the finest ingredients
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            {/* Menu Item 1 */}
+            <div className="bg-white/90 dark:bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover-lift transition-all duration-500 border border-gray-100/50 dark:border-gray-700/50 group animate-slideUp">
+              <div className="relative h-60 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+                <div className="absolute inset-0 bg-cover bg-center transform transition-transform duration-700 ease-in-out group-hover:scale-105" 
+                     style={{backgroundImage: "url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1780&q=80')"}}></div>
+                <div className="absolute top-4 left-4">
+                  <span className="bg-white/90 text-indigo-600 text-xs font-bold px-3 py-1.5 rounded-full shadow-md">CHEF'S CHOICE</span>
+                </div>
               </div>
-              <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400">Send Us a Message</h2>
+              <div className="p-8">
+                <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">Grilled Salmon</h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-4 font-light">Fresh Atlantic salmon with lemon butter sauce and seasonal vegetables</p>
+                <div className="flex justify-between items-center">
+                  <p className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-indigo-400 dark:to-purple-500 font-bold text-xl">$24.99</p>
+                  <span className="inline-block px-4 py-1.5 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/30 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-medium">
+                    Mains
+                  </span>
+                </div>
+              </div>
             </div>
             
-            {formStatus.submitted && (
-              <div className={`mb-8 p-6 rounded-xl backdrop-blur-sm shadow-md ${
-                formStatus.error 
-                  ? 'bg-red-50/90 dark:bg-red-900/20 border border-red-100 dark:border-red-800/30 text-red-700 dark:text-red-400' 
-                  : 'bg-green-50/90 dark:bg-green-900/20 border border-green-100 dark:border-green-800/30 text-green-700 dark:text-green-400'
-              }`}>
-                <div className="flex items-center">
-                  {formStatus.error ? (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  ) : (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  )}
-                  <span>{formStatus.message}</span>
+            {/* Menu Item 2 */}
+            <div className="bg-white/90 dark:bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover-lift transition-all duration-500 border border-gray-100/50 dark:border-gray-700/50 group animate-slideUp animation-delay-200">
+              <div className="relative h-60 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+                <div className="absolute inset-0 bg-cover bg-center transform transition-transform duration-700 ease-in-out group-hover:scale-105" 
+                     style={{backgroundImage: "url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1981&q=80')"}}></div>
+                <div className="absolute top-4 left-4">
+                  <span className="bg-white/90 text-pink-600 text-xs font-bold px-3 py-1.5 rounded-full shadow-md">POPULAR</span>
                 </div>
               </div>
-            )}
+              <div className="p-8">
+                <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">Margherita Pizza</h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-4 font-light">Classic pizza with tomato sauce, fresh mozzarella, and basil</p>
+                <div className="flex justify-between items-center">
+                  <p className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-600 dark:from-purple-400 dark:to-pink-500 font-bold text-xl">$18.99</p>
+                  <span className="inline-block px-4 py-1.5 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium">
+                    Pizza
+                  </span>
+                </div>
+              </div>
+            </div>
             
-            <form onSubmit={handleSubmit}>              <div className="mb-6">
-                <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Name *</label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                  </div>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm text-gray-800 dark:text-white transition-all"
-                    required
-                  />
+            {/* Menu Item 3 */}
+            <div className="bg-white/90 dark:bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover-lift transition-all duration-500 border border-gray-100/50 dark:border-gray-700/50 group animate-slideUp animation-delay-400">
+              <div className="relative h-60 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+                <div className="absolute inset-0 bg-cover bg-center transform transition-transform duration-700 ease-in-out group-hover:scale-105" 
+                     style={{backgroundImage: "url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"}}></div>
+                <div className="absolute top-4 left-4">
+                  <span className="bg-white/90 text-indigo-600 text-xs font-bold px-3 py-1.5 rounded-full shadow-md">PREMIUM</span>
                 </div>
               </div>
-              
-              <div className="mb-6">
-                <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Email *</label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm text-gray-800 dark:text-white transition-all"
-                    required
-                  />
+              <div className="p-8">
+                <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">Beef Tenderloin</h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-4 font-light">Prime beef tenderloin with red wine reduction and truffle mashed potatoes</p>
+                <div className="flex justify-between items-center">
+                  <p className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-indigo-400 dark:to-purple-500 font-bold text-xl">$32.99</p>
+                  <span className="inline-block px-4 py-1.5 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/30 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-medium">
+                    Mains
+                  </span>
                 </div>
               </div>
-              
-              <div className="mb-6">
-                <label htmlFor="subject" className="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Subject</label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
-                    </svg>
-                  </div>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    className="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm text-gray-800 dark:text-white transition-all"
-                  />
-                </div>
-              </div>
-                <div className="mb-8">
-                <label htmlFor="message" className="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Message *</label>
-                <div className="relative">
-                  <div className="absolute top-4 left-4 flex items-start pointer-events-none text-gray-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                    </svg>
-                  </div>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows="6"
-                    className="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-lg bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm text-gray-800 dark:text-white transition-all"
-                    placeholder="How can we help you?"
-                    required
-                  ></textarea>
-                </div>
-              </div>
-              
-              <button
-                type="submit"
-                className="w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg hover:shadow-xl relative overflow-hidden group disabled:opacity-70"
-                disabled={formStatus.loading}
-              >
-                <span className="absolute inset-0 w-0 bg-white/10 transition-all duration-700 ease-out group-hover:w-full"></span>
-                <span className="relative flex items-center justify-center">
-                  {formStatus.loading ? (
-                    <>
-                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      Send Message
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                      </svg>
-                    </>
-                  )}
-                </span>
-              </button>
-            </form>
+            </div>
           </div>
-            {/* Contact Information */}
-          <div>
-            <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-2xl shadow-xl p-8 md:p-10 mb-10 border border-gray-100/50 dark:border-gray-700/50 hover-lift transition-all duration-500 animate-slideRight">
-              <div className="flex items-center mb-8">
-                <div className="p-3 rounded-xl bg-gradient-to-br from-purple-400 to-pink-600 text-white mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4" />
+          
+          <div className="text-center mt-12">
+            <Link href="/menu" 
+              className="group relative inline-flex items-center px-10 py-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600 text-white font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg hover:shadow-xl overflow-hidden"
+            >
+              <span className="relative z-10">View Full Menu</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 relative z-10 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+              <div className="absolute inset-0 w-0 group-hover:w-full bg-white/10 duration-300 transition-all"></div>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Testimonials Section */}
+      <div className="py-24 px-4 md:px-8 lg:px-16 bg-white dark:bg-gray-800 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-indigo-500/5 via-purple-500/5 to-pink-500/5 dark:from-indigo-500/5 dark:via-purple-500/5 dark:to-pink-500/10 pointer-events-none"></div>
+        
+        <div className="max-w-7xl mx-auto relative">
+          <div className="text-center mb-16">
+            <span className="inline-block py-1 px-6 rounded-full text-sm font-medium tracking-wider text-indigo-600 dark:text-indigo-400 bg-indigo-100/60 dark:bg-indigo-900/30 shadow-sm mb-4">TESTIMONIALS</span>
+            <h2 className="text-3xl md:text-5xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 dark:from-white dark:via-gray-100 dark:to-gray-300">What Our Customers Say</h2>
+            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto font-light">
+              Don't just take our word for it - here's what our customers think
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {/* Testimonial 1 */}
+            <div className="bg-white/80 dark:bg-gray-800/80 p-8 rounded-2xl shadow-xl border border-gray-100/50 dark:border-gray-700/50 hover-lift transition-all duration-500 group animate-slideUp">
+              <div className="relative mb-6">
+                <div className="absolute -top-2 -left-2 text-indigo-400/20 dark:text-indigo-400/30">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"/>
                   </svg>
                 </div>
-                <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 dark:from-purple-400 dark:via-pink-400 dark:to-indigo-400">Contact Information</h2>
-              </div>
-              
-              <div className="space-y-8">
-                <div className="group flex items-start transform hover:scale-[1.01] transition-transform">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-400 to-purple-600 text-white flex items-center justify-center shadow-md group-hover:shadow-lg transition-all">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
+                <div className="flex items-center gap-4 mb-6 pl-6">
+                  <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-indigo-100 dark:border-indigo-900 shadow-md">
+                    <div className="bg-gradient-to-br from-indigo-400 to-purple-600 w-full h-full flex items-center justify-center text-white font-bold text-xl">J</div>
                   </div>
-                  <div className="ml-5">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Address</h3>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                      El Sadat St, Aswan-Egypt
-                    </p>
-                    <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center mt-2 text-indigo-600 dark:text-indigo-400 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition-colors">
-                      <span>Get directions</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  <div>
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white">Hussien Moustafa</h4>
+                    <div className="flex text-amber-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
-                    </a>
-                  </div>
-                </div>
-                
-                <div className="group flex items-start transform hover:scale-[1.01] transition-transform">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-purple-400 to-pink-600 text-white flex items-center justify-center shadow-md group-hover:shadow-lg transition-all">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                  </div>
-                  <div className="ml-5">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Phone</h3>
-                    <a href="tel:+201092289854" className="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                      +201092289854
-                    </a>
-                  </div>
-                </div>
-                
-                <div className="group flex items-start transform hover:scale-[1.01] transition-transform">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-pink-400 to-indigo-600 text-white flex items-center justify-center shadow-md group-hover:shadow-lg transition-all">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div className="ml-5">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Email</h3>
-                    <a href="mailto:info@delicious.com" className="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                      info@delicious.com
-                    </a>
-                  </div>
-                </div>
-                
-                <div className="group flex items-start transform hover:scale-[1.01] transition-transform">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-600 to-indigo-400 text-white flex items-center justify-center shadow-md group-hover:shadow-lg transition-all">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div className="ml-5">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Hours</h3>
-                    <div className="space-y-1 text-gray-600 dark:text-gray-300">
-                      <p className="flex items-center">
-                        <span className="font-medium w-32">Monday - Friday:</span>
-                        <span>11:00 AM - 10:00 PM</span>
-                      </p>
-                      <p className="flex items-center">
-                        <span className="font-medium w-32">Saturday - Sunday:</span>
-                        <span>10:00 AM - 11:00 PM</span>
-                      </p>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
                     </div>
                   </div>
                 </div>
               </div>
+              <p className="text-gray-700 dark:text-gray-300 font-light leading-relaxed">"The food was absolutely delicious! The service was impeccable and the atmosphere was perfect for our anniversary dinner. Will definitely return soon!"</p>
+              <div className="mt-6 text-xs text-gray-500 dark:text-gray-400">Visited on May 10, 2025</div>
             </div>
             
-            {/* Map */}
-            <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-2xl shadow-xl overflow-hidden h-80 relative border border-gray-100/50 dark:border-gray-700/50 hover-lift transition-all duration-500 group">
-              <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/10 to-purple-500/10 mix-blend-multiply z-10 pointer-events-none"></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
-              <div className="relative h-full w-full flex items-center justify-center bg-cover bg-center" style={{backgroundImage: "url('https://maps.googleapis.com/maps/api/staticmap?center=CityVille,State&zoom=14&size=800x400&maptype=roadmap&markers=color:red%7Clabel:D%7CCityVille,State&key=YOUR_API_KEY')"}}>
-                <div className="absolute inset-0 flex items-center justify-center bg-indigo-900/20 backdrop-blur-sm z-30">
-                  <div className="text-center text-white p-6 bg-black/40 backdrop-blur-md rounded-2xl max-w-sm mx-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 shadow-xl">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto mb-4 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <h3 className="text-xl font-bold mb-2">Find Us</h3>
-                    <p className="mb-4">El Sadat St, Aswan-Egypt</p>
-                    <a 
-                      href="https://maps.google.com" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="inline-block px-6 py-2.5 bg-indigo-600 text-white font-medium text-sm rounded-lg shadow-md hover:bg-indigo-700 transition-colors duration-300"
-                    >
-                      Open in Google Maps
-                    </a>
+            {/* Testimonial 2 */}
+            <div className="bg-white/80 dark:bg-gray-800/80 p-8 rounded-2xl shadow-xl border border-gray-100/50 dark:border-gray-700/50 hover-lift transition-all duration-500 group animate-slideUp animation-delay-200">
+              <div className="relative mb-6">
+                <div className="absolute -top-2 -left-2 text-purple-400/20 dark:text-purple-400/30">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"/>
+                  </svg>
+                </div>
+                <div className="flex items-center gap-4 mb-6 pl-6">
+                  <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-purple-100 dark:border-purple-900 shadow-md">
+                    <div className="bg-gradient-to-br from-purple-400 to-pink-600 w-full h-full flex items-center justify-center text-white font-bold text-xl">S</div>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white">Ahmed Ragab</h4>
+                    <div className="flex text-amber-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
+              <p className="text-gray-700 dark:text-gray-300 font-light leading-relaxed">"I've dined at many restaurants, but Delicious stands out. The flavors are unique and every dish is consistently amazing! The attention to detail and presentation is unmatched."</p>
+              <div className="mt-6 text-xs text-gray-500 dark:text-gray-400">Visited on June 15, 2025</div>
+            </div>
+            
+            {/* Testimonial 3 */}
+            <div className="bg-white/80 dark:bg-gray-800/80 p-8 rounded-2xl shadow-xl border border-gray-100/50 dark:border-gray-700/50 hover-lift transition-all duration-500 group animate-slideUp animation-delay-400">
+              <div className="relative mb-6">
+                <div className="absolute -top-2 -left-2 text-pink-400/20 dark:text-pink-400/30">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"/>
+                  </svg>
+                </div>
+                <div className="flex items-center gap-4 mb-6 pl-6">
+                  <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-pink-100 dark:border-pink-900 shadow-md">
+                    <div className="bg-gradient-to-br from-pink-400 to-indigo-600 w-full h-full flex items-center justify-center text-white font-bold text-xl">M</div>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white">Bisho Natig</h4>
+                    <div className="flex text-amber-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p className="text-gray-700 dark:text-gray-300 font-light leading-relaxed">"The chef's special was incredible! My family and I had an amazing dining experience and will definitely be returning. The staff was attentive and the ambiance was perfect for our celebration."</p>
+              <div className="mt-6 text-xs text-gray-500 dark:text-gray-400">Visited on July 22, 2025</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      <div className="py-24 px-4 md:px-8 lg:px-16 relative overflow-hidden">
+        {/* Background with gradient overlay */}
+        <div className="absolute inset-0 bg-cover bg-center" style={{backgroundImage: "url('https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"}}></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/90 via-purple-900/90 to-pink-900/90"></div>
+        
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+          <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-gradient-to-br from-indigo-500/20 to-purple-500/20 blur-3xl"></div>
+          <div className="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 blur-3xl"></div>
+          <div className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-gradient-to-br from-pink-500/20 to-indigo-500/20 blur-3xl"></div>
+          
+          {/* Floating blobs */}
+          <div className="absolute top-1/3 left-1/3 w-16 h-16 rounded-full bg-white/10 animate-float"></div>
+          <div className="absolute bottom-1/3 right-1/3 w-12 h-12 rounded-full bg-white/10 animate-float animation-delay-300"></div>
+          <div className="absolute top-2/3 left-1/4 w-8 h-8 rounded-full bg-white/10 animate-float animation-delay-200"></div>
+          
+          {/* Light beam effect */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/5 via-white/0 to-transparent"></div>
+        </div>
+        
+        {/* Content */}
+        <div className="max-w-7xl mx-auto text-center relative z-10">
+          <div className="inline-block p-1 bg-white/10 rounded-full mb-6 animate-scaleIn">
+            <span className="inline-block py-1 px-6 rounded-full text-sm font-medium tracking-wider text-white">RESERVE NOW</span>
+          </div>
+          
+          <h2 className="text-4xl md:text-6xl font-black mb-8 text-white animate-fadeIn leading-tight">
+            Elevate Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300">Dining Experience</span>
+          </h2>
+          
+          <p className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto text-white/80 font-light animate-fadeIn animation-delay-200">
+            Make a reservation today and indulge in an unforgettable culinary journey crafted just for you
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fadeIn animation-delay-300">
+            <Link href="/reservation" 
+                className="group relative px-10 py-4 bg-gradient-to-r from-white/90 to-white/80 text-indigo-800 font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-xl hover:shadow-2xl overflow-hidden"
+            >
+              <span className="relative z-10 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+                </svg>
+                Reserve a Table
+              </span>
+              <div className="absolute inset-0 w-0 group-hover:w-full bg-indigo-100 duration-300 transition-all -z-0"></div>
+            </Link>
+            
+            <Link href="/contact" 
+                className="group relative px-10 py-4 bg-transparent text-white font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden border border-white/30"
+            >
+              <span className="relative z-10 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M14.243 5.757a6 6 0 10-.986 9.284 1 1 0 111.087 1.678A8 8 0 1118 10a3 3 0 01-4.8 2.401A4 4 0 1114 10a1 1 0 102 0c0-1.537-.586-3.07-1.757-4.243zM12 10a2 2 0 10-4 0 2 2 0 004 0z" clipRule="evenodd" />
+                </svg>
+                Contact Us
+              </span>
+              <div className="absolute inset-0 w-0 group-hover:w-full bg-white/20 duration-300 transition-all -z-0"></div>
+            </Link>
+          </div>
+          
+          <div className="mt-12 flex flex-wrap justify-center gap-6 opacity-80">
+            <div className="flex flex-col items-center">
+              <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <p className="text-white text-sm">Open Daily<br/>11am - 10pm</p>
+            </div>
+            
+            <div className="flex flex-col items-center">
+              <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+              </div>
+              <p className="text-white text-sm">Reservations<br/>(555) 123-4567</p>
+            </div>
+            
+            <div className="flex flex-col items-center">
+              <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <p className="text-white text-sm">El Sadat Street<br/>Egypt, Aswan</p>
             </div>
           </div>
         </div>

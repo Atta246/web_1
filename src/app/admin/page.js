@@ -105,8 +105,6 @@ function LoginPage() {
               Sign in
             </button>
           </div>          <div className="text-center text-sm text-gray-600 dark:text-gray-400">
-            <p>Demo credentials:</p>
-            <p>Username: 121401 / Password: Atta</p>
           </div>
           
           {process.env.NODE_ENV === 'development' && (

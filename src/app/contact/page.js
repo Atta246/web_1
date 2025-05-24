@@ -274,8 +274,8 @@ export default function Contact() {
                   </div>
                   <div className="ml-5">
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Phone</h3>
-                    <a href="tel:+15551234567" className="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                      +1 (555) 123-4567
+                    <a href="tel:+201092289854" className="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                      +201092289854
                     </a>
                   </div>
                 </div>
@@ -330,7 +330,7 @@ export default function Contact() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                     <h3 className="text-xl font-bold mb-2">Find Us</h3>
-                    <p className="mb-4">123 Restaurant St, CityVille, State 12345</p>
+                    <p className="mb-4">El Sadat St, Aswan-Egypt</p>
                     <a 
                       href="https://maps.google.com" 
                       target="_blank" 

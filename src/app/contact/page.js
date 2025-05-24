@@ -254,8 +254,7 @@ export default function Contact() {
                   <div className="ml-5">
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Address</h3>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                      123 Restaurant St.<br />
-                      CityVille, State 12345
+                      El Sadat St, Aswan-Egypt
                     </p>
                     <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center mt-2 text-indigo-600 dark:text-indigo-400 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition-colors">
                       <span>Get directions</span>

@@ -12,7 +12,7 @@ export default function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex">
             <Link href="/" className="flex-shrink-0 flex items-center animate-fadeIn">
-              <span className="text-2xl font-black text-gradient-primary">Delicious</span>
+              <span className="text-2xl font-black text-gradient-primary">Havana</span>
             </Link>
             <div className="hidden sm:ml-10 sm:flex sm:space-x-12">              {[
                 { name: 'Home', href: '/', delay: 'animation-delay-150' },
